@@ -17,7 +17,7 @@ public abstract class Person {
 	String dateOfBirth;
 
 	
-	public Person(String id,String name, String address, String email,String dateOfBirth) { //ctor
+	public Person(String id,String name, String email,String address ,String dateOfBirth) { //ctor
 		this.id=id;
 		this.address=address;
 		this.name=name;
@@ -66,11 +66,11 @@ public abstract class Person {
 	}
 	
 	public void showPersonalInformation() {
-		System.out.printf("Name: "+getName());
-		System.out.printf(" ,Id: "+getId());
-		System.out.printf(" ,Address: "+getAddress());
-		System.out.printf(" ,Email: "+getEmail());
-		System.out.println(" ,DateOfBirth: "+getDateOfBirth());
+		System.out.println("Name: "+getName());
+		System.out.println("Id: "+getId());
+		System.out.println("Address: "+getAddress());
+		System.out.println("Email: "+getEmail());
+		System.out.println("DateOfBirth: "+getDateOfBirth());
 	}
 	
 	/*

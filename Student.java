@@ -9,8 +9,8 @@ public class Student extends Person {
 		int numberOfCource;
 		String password;
 		
-public Student(String id,String name, String address, String email,String password, String dateOfBirth,int numberOfCource) {
-	super(id, name, address,email,dateOfBirth);
+public Student(String id,String name, String email,String password,String address,  String dateOfBirth,int numberOfCource) {
+	super(id, name,email,address,dateOfBirth);
           //כפתור נוסף
 	         // this.Course=course;
 			//this.Grade=grade;
