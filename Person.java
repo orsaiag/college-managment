@@ -1,12 +1,5 @@
 package college_managment_system;
 
-import java.util.Date;
-
-import lombok.AccessLevel;
-import lombok.Setter;
-import lombok.Data;
-import lombok.ToString;
-
 
 public abstract class Person {
 	

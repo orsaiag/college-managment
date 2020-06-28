@@ -1,10 +1,6 @@
 package college_managment_system;
-//import java.util.List;
-//import java.util.ArrayList;
-import java.util.Date;
 
 public class Lecturer extends Person{
-	//List<Course> courses;
 	int salary;
 	String password;
 	public String getPassword() {
@@ -21,6 +17,12 @@ public class Lecturer extends Person{
 		this.password=password;
 	}
 	
+	public Lecturer(Lecturer lec) {super(lec.getId(),lec.getName(),lec.getEmail(),lec.getAddress(),lec.getDateOfBirth());
+	this.password=lec.getPassword();
+	this.salary=lec.getSalary();
+		
+	}
+
 	public void showPersonalInformation() {
 		System.out.println("Name:"+getName());
 		System.out.println("Id:"+getId());
@@ -31,10 +33,7 @@ public class Lecturer extends Person{
 
 	}
 	
-	/*public List<Student> getListStudents(Course course){
-		return List<Student>;
-	}
-	*/
+
 	
 	public int getSalary() {
 		return salary;
@@ -43,12 +42,7 @@ public class Lecturer extends Person{
 	public void setSalary(int salary) {
 		this.salary = salary;
 	}
-/*
-	public void showReports() { //override - show reports of all kind 
-		
-	}
-	
-*/
+
 
 }
 

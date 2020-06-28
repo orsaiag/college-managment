@@ -109,12 +109,11 @@ public static Object findWhichTypeOfPerson(int type,String id) throws IOExceptio
 	}
 	case 6:
 	{
-		return LoginPage.getObjectFromFile(type,id,"Principle.txt");
+		return getObjectFromFile(type,id,"Principle.txt");
 	}
 	}
 	return obj1;
 }
-
 
 
 public static void replaceSelected(String replaceWith, String id,String fileName) {
@@ -172,14 +171,10 @@ public void deleteFile(String filename) {
 	file.delete();
 }
 
-@SuppressWarnings("unused")
 public void createFile(String filename) throws IOException {
 	File file = new File(filename);
 	file.createNewFile();
 }
-
-
-
 
 
 public static Object getObjectFromFile(int type,String id,String file) {
@@ -193,7 +188,6 @@ public static Object getObjectFromFile(int type,String id,String file) {
 	 Scanner myReader = new Scanner(currentUser);
      while (myReader.hasNextLine() && j<7) {
     	 char data[]= myReader.nextLine().toCharArray();
-    	// String data= myReader.nextLine(); 
     	 i=0;
     	 count=0;
     	 while(j<7) 
@@ -272,14 +266,286 @@ public static Object getObjectFromFile(int type,String id,String file) {
 }
 
 
+public void showSpecipicLinesFromFile(String id,String filename) throws IOException { 
+	File file =new File(filename);
+    Scanner in = null;
+    try {
+        in = new Scanner(file);
+        while(in.hasNext())
+        {
+            String line=in.nextLine();
+            if(line.contains(id))
+                System.out.println(line);
+        }
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+	
+}
+}
 
+
+public void showGrades(String id,String filename) throws IOException {
+/*
+ * there are no 100, only 99 and below!
+ * exam is 80% from the grade and quiz is 20% from grade:
+ * 1-EXAM
+* 2-QUIZ
+
+ * the course are:
+1-infi1
+2-algebra
+3-CS
+4-Java
+*/
+	 System.out.println("Grades and overall average:");
+	 System.out.println();
+	File file =new File(filename);
+	char[] lineArray=new char[17];
+    Scanner in = null;
+    int sum=0;
+    try {
+        in = new Scanner(file);
+        while(in.hasNext())
+        {
+            String line=in.nextLine();
+            if(line.contains(id))
+            {
+            	lineArray=line.toCharArray();
+            	int number1=new Integer(lineArray[14])-48;
+            	int number2=new Integer(lineArray[15])-48;
+            switch(lineArray[10])
+            {
+            case '1':
+            {
+            	 System.out.print("Infi1- ");
+            	 break;
+            }
+            case '2':
+            {
+                 System.out.print("Algebra- ");
+                 break;
+            }
+            case '3':
+            {
+            	System.out.print("CS- ");
+            	break;
+            }
+            case'4':
+            {
+            	System.out.print("Java- ");
+            	break;
+            }
+            	
+            
+        }
+            switch(lineArray[12])
+            {
+            case '1':
+            {
+            	sum+=(number1*10+number2)*0.8;
+            	System.out.println("Exam- "+number1+number2);
+            	
+            	break;
+            }
+            case '2':
+            {
+            	sum+=(number1*10+number2)*0.2;
+            	System.out.println("Quiz- "+number1+number2);
+            	break;
+            }
+            }
+            }
+        }
+        System.out.println();
+		 System.out.println("Over all average: "+sum);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+}
+}
+
+
+public void showCoursesITeachOrTutor(String id,String filename) throws IOException {//add the courses according to "course.txt"
+/*
+the course are:
+1-infi1
+2-algebra
+3-CS
+4-Java
+*/
+	 System.out.println("The courses I teach are:");
+	File file =new File(filename);
+	char[] lineArray=new char[12];
+    Scanner in = null;
+    try {
+        in = new Scanner(file);
+        while(in.hasNext())
+        {
+            String line=in.nextLine();
+            if(line.contains(id))
+            {
+            	lineArray=line.toCharArray();
+            switch(lineArray[10])
+            {
+            case '1':
+            {
+            	 System.out.println("Infi1");
+            	 break;
+            }
+            case '2':
+            {
+                 System.out.println("Algebra");
+                 break;
+            }
+            case '3':
+            {
+            	System.out.println("CS");
+            	break;
+            }
+            case'4':
+            {
+            	System.out.println("Java");
+            	break;
+            }
+            	
+            
+        }
+        }
+        }
+        System.out.println();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+}
+}
+
+
+@SuppressWarnings("resource")
+public int numOfCoursePerStudent(String id,String filename) throws FileNotFoundException {
+	File file =new File(filename);
+    Scanner in = null;
+    int counter=0;
+     in = new Scanner(file);
+      while(in.hasNext())
+        {
+            String line=in.nextLine();
+            if(line.contains(id))
+            {
+            	counter++;
+            	
+            }
+        }
+	return counter;
 
 }
-	
-	
-	
-	
-	
-	
 
 
+@SuppressWarnings({ "resource" })
+public void showStudentPerLecturerOrTutor(String id,String filename) throws FileNotFoundException {
+	/*
+	the course are:
+	1-infi1
+	2-algebra
+	3-CS
+	4-Java
+	*/
+	 System.out.println("My student are:");
+	 String StudentId;
+	 File fileTeacher =new File(filename);
+	File fileStudent =new File("StudentsAndCourse.txt");
+	char[] lineArrayTeach=new char[10];
+    Scanner in = null;
+    File file =new File("Student.txt");
+	Scanner inn = new Scanner(file);
+   try {
+	   in = new Scanner(fileTeacher);
+       while(in.hasNext())
+       {
+           String line=in.nextLine();
+           if(line.contains(id))//id of teacher
+           {
+        	   lineArrayTeach=line.toCharArray();
+           switch(lineArrayTeach[10])
+           {
+           case '1':
+           {
+           	 System.out.println("Infi1:");
+           	inn = new Scanner(fileStudent);//open file of student and the courses 
+             while(inn.hasNext())
+             {
+                String lineS=inn.nextLine();
+                 if(lineS.contains(",1"))//if the student study the first course
+                 {
+                	 StudentId = lineS.substring(0, 9);
+                	 Student stud=new Student( (Student) getObjectFromFile(1,StudentId,"Student.txt"));
+                   	 System.out.println(stud.getName());
+             break;
+           }
+             }
+           }
+
+           case '2':
+           {
+             	 System.out.println("Algebra:");
+             	inn = new Scanner(fileStudent);//open file of student and the courses 
+                while(inn.hasNext())
+                {
+                   String lineS=inn.nextLine();
+                    if(lineS.contains(",2"))//if the student study the first course
+                    {
+                   	 StudentId = lineS.substring(0, 9);
+                   	 Student stud=new Student( (Student) getObjectFromFile(1,StudentId,"Student.txt"));
+                   	 System.out.println(stud.getName());
+                    }
+                }
+                break;
+           }
+           case '3':
+           {
+            	 System.out.println("CS:");
+            	inn = new Scanner(fileStudent);//open file of student and the courses 
+               while(inn.hasNext())
+               {
+                  String lineS=inn.nextLine();
+                   if(lineS.contains(",3"))//if the student study the first course
+                   {
+                  	 StudentId = lineS.substring(0, 9);
+                  	Student stud=new Student( (Student) getObjectFromFile(1,StudentId,"Student.txt"));
+                  	 System.out.println(stud.getName());
+                   }
+               }
+               break;
+          }
+           case '4':
+           {
+           	 System.out.println("Java:");
+            inn = new Scanner(fileStudent);//open file of student and the courses 
+               while(inn.hasNext())
+               {
+                  String lineS=inn.nextLine();
+                   if(lineS.contains(",4"))//if the student study the first course
+                   {
+                  	 StudentId = lineS.substring(0, 9);
+                  	Student stud=new Student( (Student) getObjectFromFile(1,StudentId,"Student.txt"));
+                  	 System.out.println(stud.getName());
+                   }
+               }
+               break;
+          }
+       }
+       }
+       }
+       System.out.println();
+       } catch (FileNotFoundException e) {
+           e.printStackTrace();
+}
+	
+}
+}
+
+
+
+	
+	
+	
+	
+	
+	

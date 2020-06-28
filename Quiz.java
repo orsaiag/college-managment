@@ -1,3 +1,5 @@
+package college_managment_system;
+
 
 public class Quiz {
 	private int courseid;

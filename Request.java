@@ -1,4 +1,4 @@
-package testPackage;
+package college_managment_system;
 
 public class Request {
 	

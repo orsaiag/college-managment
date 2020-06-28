@@ -24,7 +24,7 @@ public Student(String id,String name, String email,String password,String addres
 		public Student(Student std) { super(std.getId(),std.getName(),std.getEmail(),std.getAddress(),std.getDateOfBirth());
 			this.password=std.getPassword();
 			this.numberOfCource=std.getNumberOfCource();
-	// TODO Auto-generated constructor stub
+	
 }
 
 

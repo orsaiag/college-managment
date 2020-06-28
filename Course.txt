@@ -1,5 +1,5 @@
 Course:
-1.infi1
+1,infi1
 2,algebra
 3,CS
 4,Java

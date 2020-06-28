@@ -1,8 +1,5 @@
 package college_managment_system;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Janitor extends Person{
 	int salary;
 	String password;
@@ -20,6 +17,14 @@ public class Janitor extends Person{
 		this.password=password;
 	}
 	
+
+
+	public Janitor(Janitor jan) {super(jan.getId(),jan.getName(),jan.getEmail(),jan.getAddress(),jan.getDateOfBirth());
+	this.password=jan.getPassword();
+	this.salary=jan.getSalary();
+		
+	}
+
 	public void showPersonalInformation() {
 		System.out.println("Name:"+getName());
 		System.out.println("Id:"+getId());

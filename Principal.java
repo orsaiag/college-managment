@@ -67,7 +67,24 @@ public class Principal extends Person {
 		}
 		return janitorList;
 	}
-	
+
+	public int getSalary() {
+		return salary;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 	
 	// public void showReports() 
 }
