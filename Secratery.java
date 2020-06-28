@@ -1,8 +1,5 @@
 package college_managment_system;
 
-import java.util.List;
-import java.util.ArrayList;
-
 public class Secratery extends Person{
 
 	int salary;

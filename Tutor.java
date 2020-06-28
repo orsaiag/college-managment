@@ -1,9 +1,6 @@
 package college_managment_system;
 
-import java.util.List;
-
 public class Tutor extends Person{
-	private List<Course> courselist;
 	int salary;
 	String password;
 	
@@ -15,10 +12,6 @@ public class Tutor extends Person{
         this.salary=salary;
 	}
 	
-	public List<Student> getStudentList(Course c1){
-		return null;
-		//להחזיר את כל הסטודנטים מהקובץ מאותו קורס
-	}
 	
 	
 	public void showStudentInformation() {
@@ -37,6 +30,13 @@ public class Tutor extends Person{
 		this.password = password;
 	}
 
+		public Tutor(Tutor tut) {
+			super(tut.getId(),tut.getName(),tut.getEmail(),tut.getAddress(),tut.getDateOfBirth());
+		this.password=tut.getPassword();
+		this.salary=tut.getSalary();
+			
+		}
+
 		public boolean sendRequestChangeDetails(String id,String name, String address,String password, String email) {
 			if(this.id!=id)
 				return false;
@@ -53,13 +53,7 @@ public class Tutor extends Person{
 			
 		}
 
-		public List<Course> getCourselist() {
-			return courselist;
-		}
 
-		public void setCourselist(List<Course> courselist) {
-			this.courselist = courselist;
-		}
 
 		public int getSalary() {
 			return salary;

@@ -1,5 +1,6 @@
+package college_managment_system;
+
 import java.util.List;
-import java.util.ArrayList;
 
 
 public class Course {
@@ -11,7 +12,7 @@ public class Course {
 	private List<Student> stdlist;
 	
 	
-	public Course(int courseID,String courseName,List<Lecturer> lList,List<Tutor> tList,List<Studnt> sList) {
+	public Course(int courseID,String courseName,List<Lecturer> lList,List<Tutor> tList,List<Student> sList) {
 		this.courseID=courseID;
 		this.courseName=courseName;
 		this.lctlist=lList;
