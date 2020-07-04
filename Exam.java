@@ -1,16 +1,29 @@
 package college_managment_system;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Exam {
 
-	int courseId;
+	String courseId;
 	String studentId;
-	String lectureID;
-	double grade;
+	String grade;
 	
-	public int getCourseId() {
+	public Exam(String id, String course, String grade2) throws IOException {
+		courseId=course;
+		studentId=id;
+		grade=grade2;
+	    BufferedWriter grades = new BufferedWriter(new FileWriter("Grades.txt",true)); 
+	    grades.append(id+","+course+","+"1"+","+grade+"\n");
+	    grades.close();
+	    System.out.println("Added successfully");
+	}
+	
+	public String getCourseId() {
 		return courseId;
 	}
-	public void setCourseId(int courseId) {
+	public void setCourseId(String courseId) {
 		this.courseId = courseId;
 	}
 	
@@ -21,17 +34,11 @@ public class Exam {
 		this.studentId = studentId;
 	}
 	
-	public String getLectureID() {
-		return lectureID;
-	}
-	public void setLectureID(String lectureID) {
-		this.lectureID = lectureID;
-	}
 	
-	public double getGrade() {
+	public String getGrade() {
 		return grade;
 	}
-	public void setGrade(double grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 }

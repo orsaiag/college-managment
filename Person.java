@@ -3,19 +3,19 @@ package college_managment_system;
 
 public abstract class Person {
 	
-	String id;
-	String name;
-	String address;
-	String email;
-	String dateOfBirth;
+	static String id;
+	static String name;
+	static String address;
+	static String email;
+	static String dateOfBirth;
 
 	
 	public Person(String id,String name, String email,String address ,String dateOfBirth) { //ctor
-		this.id=id;
-		this.address=address;
-		this.name=name;
-		this.email=email;
-		this.dateOfBirth=dateOfBirth;
+		Person.id=id;
+		Person.address=address;
+		Person.name=name;
+		Person.email=email;
+		Person.dateOfBirth=dateOfBirth;
 	}
 
 	public String getId() {
@@ -23,7 +23,7 @@ public abstract class Person {
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		Person.id = id;
 	}
 
 	public String getName() {
@@ -31,7 +31,7 @@ public abstract class Person {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		Person.name = name;
 	}
 
 	public String getAddress() {
@@ -39,7 +39,7 @@ public abstract class Person {
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
+		Person.address = address;
 	}
 
 	public String getEmail() {
@@ -47,7 +47,7 @@ public abstract class Person {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		Person.email = email;
 	}
 
 	public String getDateOfBirth() {
@@ -55,7 +55,7 @@ public abstract class Person {
 	}
 
 	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+		Person.dateOfBirth = dateOfBirth;
 	}
 	
 	public void showPersonalInformation() {
@@ -66,13 +66,10 @@ public abstract class Person {
 		System.out.println("DateOfBirth: "+getDateOfBirth());
 	}
 	
-	/*
-	public void showReports() {
-	}
-	*/
+
 	
 	public boolean sendRequestChangeDetails(String id,String name, String address, String email) {
-		if(this.id!=id)
+		if(Person.id!=id)
 			return false;
 		else {
 			if(!name.equals(getName()))
