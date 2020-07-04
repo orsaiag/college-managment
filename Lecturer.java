@@ -44,5 +44,26 @@ public class Lecturer extends Person{
 	}
 
 
+	public boolean sendRequestChangeDetails(String idx,String namex, String addressx, String emailx) {
+		boolean value=false;
+		if(Person.id!=idx)
+			return false;
+		else {
+			if((namex.equals(getName()))==false) {
+				setName(namex);
+				value=true;
+			}
+			if(addressx.equals(getAddress())==false) {
+				setAddress(addressx);
+			value=true;
+			}
+			if(emailx.equals(getEmail())==false) {
+				setEmail(emailx);
+				value=true;
+			}
+		}
+		return value;
+	}
 }
+
 

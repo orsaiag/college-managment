@@ -1,19 +1,12 @@
 package college_managment_system;
 
 
-//import college_managment_system.Course;
-//import college_managment_system.List;
-//import college_managment_system.Person;
-
 public class Student extends Person {
 		int numberOfCource;
 		String password;
 		
 public Student(String id,String name, String email,String password,String address,  String dateOfBirth,int numberOfCource) {
 	super(id, name,email,address,dateOfBirth);
-          //כפתור נוסף
-	         // this.Course=course;
-			//this.Grade=grade;
 			this.numberOfCource=numberOfCource;
 			this.password=password;
 }
@@ -40,10 +33,7 @@ public Student(String id,String name, String email,String password,String addres
 			
 		}
 		
-		/*
-		public void showReports() {
-		}
-		*/
+	
 		
 		public int getNumberOfCource() {
 			return numberOfCource;
@@ -53,7 +43,6 @@ public Student(String id,String name, String email,String password,String addres
 
 
 		private int getnumberOfCourse() {
-			// TODO Auto-generated method stub
 			return numberOfCource;
 		}
 		
@@ -75,20 +64,25 @@ public Student(String id,String name, String email,String password,String addres
 
 
 
-		public boolean sendRequestChangeDetails(String id,String name, String address, String email) {
-			if(this.id!=id)
+		public boolean sendRequestChangeDetails(String idx,String namex, String addressx, String emailx) {
+			boolean value=false;
+			if(Person.id!=idx)
 				return false;
 			else {
-				if(!name.equals(getName()))
-					setName(name);
-				if(!address.equals(getAddress()))
-					setAddress(address);
-				if(!name.equals(getEmail()))
-					setEmail(email);
-				return true;
+				if((namex.equals(getName()))==false) {
+					setName(namex);
+					value=true;
+				}
+				if(addressx.equals(getAddress())==false) {
+					setAddress(addressx);
+				value=true;
+				}
+				if(emailx.equals(getEmail())==false) {
+					setEmail(emailx);
+					value=true;
+				}
 			}
-
-			
+			return value;
 		}
 		
 		

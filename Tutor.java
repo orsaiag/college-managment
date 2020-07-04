@@ -37,21 +37,28 @@ public class Tutor extends Person{
 			
 		}
 
-		public boolean sendRequestChangeDetails(String id,String name, String address,String password, String email) {
-			if(this.id!=id)
+		public boolean sendRequestChangeDetails(String idx,String namex, String addressx, String emailx) {
+			boolean value=false;
+			if(Person.id!=idx)
 				return false;
 			else {
-				if(!name.equals(getName()))
-					setName(name);
-				if(!address.equals(getAddress()))
-					setAddress(address);
-				if(!name.equals(getEmail()))
-					setEmail(email);
-				return true;
+				if((namex.equals(getName()))==false) {
+					setName(namex);
+					value=true;
+				}
+				if(addressx.equals(getAddress())==false) {
+					setAddress(addressx);
+				value=true;
+				}
+				if(emailx.equals(getEmail())==false) {
+					setEmail(emailx);
+					value=true;
+				}
 			}
+			return value;
+		}
 
 			
-		}
 
 
 
