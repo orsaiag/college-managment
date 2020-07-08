@@ -1,22 +1,25 @@
 package college_managment_system;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Request {
-	
+
 	int requestId;
-	Student student;
-	
-	public int getRequestId() {
-		return requestId;
+
+	public int getRequestId() throws IOException {
+		return Model.showNumberOfLines("ReqeustInformation.txt") + 1;
 	}
-	
-	public Student getStudent() {
-		return student;
-	}
-	
-	public void updateStudentInformation(Student s, String name, String address, String email) {
-		s.name = name;
-		s.address = address;
-		s.email = email;
+
+	public void createRequest(int numLines, String id, String name, String email,  String password,String address,
+			String dateOfBirth, int number) throws IOException {
+		BufferedWriter output = new BufferedWriter(new FileWriter("ReqeustInformation.txt", true));
+		output.append(getRequestId() + "." + id + ',' + name + ',' + email + ',' +  password + ',' +address + ','
+				+ dateOfBirth + "," + number + ",\n");
+		output.close();
+		System.out.println("Your request has been send to approve");
+
 	}
 
 }

@@ -1,98 +1,104 @@
 package college_managment_system;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
-//import college_managment_system.Course;
-//import college_managment_system.List;
-//import college_managment_system.Person;
+public class Student extends Person  implements Cloneable{
+	int numberOfCourse;
+	String password;
+	ArrayList<Course> l1 = new ArrayList<Course>();
 
-public class Student extends Person {
-		int numberOfCource;
-		String password;
-		
-public Student(String id,String name, String email,String password,String address,  String dateOfBirth,int numberOfCource) {
-	super(id, name,email,address,dateOfBirth);
-          //כפתור נוסף
-	         // this.Course=course;
-			//this.Grade=grade;
-			this.numberOfCource=numberOfCource;
-			this.password=password;
-}
+	public Student(String id, String name, String email, String password, String address, String dateOfBirth,
+			int numberOfCourse) {
+		super(id, name, email, address, dateOfBirth);
+		this.numberOfCourse = numberOfCourse;
+		this.password = password;
+	}
 
-	
-		
-		
-		public Student(Student std) { super(std.getId(),std.getName(),std.getEmail(),std.getAddress(),std.getDateOfBirth());
-			this.password=std.getPassword();
-			this.numberOfCource=std.getNumberOfCource();
-	
-}
+	public Student(Student std) {
+		super(std.getId(), std.getName(), std.getEmail(), std.getAddress(), std.getDateOfBirth());
+		this.password = std.getPassword();
+		this.numberOfCourse = std.getNumberOfCourse();
 
+	}
 
+	public void showStudentInformation() {
+		System.out.println("Name:" + getName());
+		System.out.println(" Id:" + getId());
+		System.out.println(" Address: " + getAddress());
+		System.out.println(" Email: " + getEmail());
+		System.out.println(" DateOfBirth: " + getDateOfBirth());
+		System.out.println(" NumberOfCourse: " + getnumberOfCourse());
 
+	}
 
-		public void showStudentInformation() {
-			System.out.println("Name:"+getName());
-			System.out.println(" Id:"+getId());
-			System.out.println(" Address: "+getAddress());
-			System.out.println(" Email: "+getEmail());
-			System.out.println(" DateOfBirth: "+getDateOfBirth());
-			System.out.println(" NumberOfCourse: "+getnumberOfCourse());
-			
-		}
-		
-		/*
-		public void showReports() {
-		}
-		*/
-		
-		public int getNumberOfCource() {
-			return numberOfCource;
-		}
+	public int getNumberOfCourse() {
+		return numberOfCourse;
+	}
 
+	private int getnumberOfCourse() {
+		return numberOfCourse;
+	}
 
+	public void setNumberOfCourse(int numberOfCourse) {
+		this.numberOfCourse = numberOfCourse;
+	}
 
-
-		private int getnumberOfCourse() {
-			// TODO Auto-generated method stub
-			return numberOfCource;
-		}
-		
-
-
-		public void setNumberOfCource(int numberOfCource) {
-			this.numberOfCource = numberOfCource;
-		}
-
-
-		public String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-		public void setPassword(String password) {
-			this.password = password;
-		}
-
-
-
-
-		public boolean sendRequestChangeDetails(String id,String name, String address, String email) {
-			if(this.id!=id)
-				return false;
-			else {
-				if(!name.equals(getName()))
-					setName(name);
-				if(!address.equals(getAddress()))
-					setAddress(address);
-				if(!name.equals(getEmail()))
-					setEmail(email);
-				return true;
-			}
-
-			
-		}
-		
-		
-
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
+	public ArrayList<Course> getL1() {
+		return l1;
+	}
+
+	public void setL1(ArrayList<Course> l1) {
+		this.l1 = l1;
+	}
+
+	public void buildCourseList() throws FileNotFoundException {
+		File file = new File("StudentsAndCourse.txt");
+		Scanner in = new Scanner(file);
+		while (in.hasNext()) {
+			String line = in.nextLine();
+			if (line.contains(id))
+				this.l1.add(new Course(new Integer(line.charAt(line.length() - 1)) - 48));
+		}
+		in.close();
+		file = new File("Course.txt");
+		for (int i = 0; i < l1.size(); i++) {
+			in = new Scanner(file);
+			while (in.hasNext()) {
+				String line = in.nextLine();
+				if (line.contains(l1.get(i).getCourseID() +""))
+					this.l1.get(i).setCourseName(line.substring(2));
+			}
+		}
+		in.close();
+	}
 	
+	public String[] getMyCourses()
+	{
+		int i=0, j = 1;
+		String[] print=new String[this.l1.size()+1];
+		print[0]="These are my courses";
+		for (; i < l1.size(); i++) {
+			print[j++]=( l1.get(i).getCourseID() + " - " + l1.get(i).getCourseName());
+		}
+		return print;
+	}
+	
+	
+
+	 
+	  
+
+
+	 
+}

@@ -11,7 +11,7 @@ public class Janitor extends Person{
 		this.password = password;
 	}
 
-	public Janitor(String id,String name,String address,String password,String email,String dateOfBirth,int salary) {
+	public Janitor(String id,String name,String email,String password,String address,String dateOfBirth,int salary) {
 		super(id,name,address,email,dateOfBirth);
 		this.salary=salary;
 		this.password=password;
@@ -44,22 +44,32 @@ public class Janitor extends Person{
 		return this.salary;
 	}
 	
-	public boolean sendRequestChangeDetails(String id,String name, String address, String email) {
-		if(this.id!=id)
+	
+	public boolean sendRequestChangeDetails(String idx,String namex, String addressx, String emailx) {
+		boolean value=false;
+		System.out.print("STD1 - "+idx+" "+namex+" "+addressx+" "+emailx);
+		System.out.print("STD2 - "+this.getId()+" "+this.getName()+" "+this.getAddress()+" "+this.getEmail());
+		if(idx.equals(this.getId())==false)
 			return false;
 		else {
-			if(!name.equals(getName()))
-				setName(name);
-			if(!address.equals(getAddress()))
-				setAddress(address);
-			if(!name.equals(getEmail()))
-				setEmail(email);
-			return true;
+			if((namex.equals(getName()))==false) {
+				setName(namex);
+				value=true;
+			}
+			if(addressx.equals(getAddress())==false) {
+				setAddress(addressx);
+			value=true;
+			}
+			if(emailx.equals(getEmail())==false) {
+				setEmail(emailx);
+				value=true;
+			}
 		}
-	}
-	
-	public void clean() {
-		//something
+		if (value==true)
+			System.out.print("TRUEEEE");
+		else
+			System.out.print("FALSEEE");
+		return value;
 	}
 	
 }
